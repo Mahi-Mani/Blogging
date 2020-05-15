@@ -1,19 +1,50 @@
-import React, { useReducer } from "react";
+import React, { useReducer, createContext, useContext } from "react";
 // Don't forget to import all of your actions!
+
+const StoreContext = createContext();
+const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
   switch (action.type) {
-  default:
-    return state;
+    case "ADD_POST":
+      return {
+        ...state,
+        posts: [action.post, ...state.posts]
+      }
+    case "VIEW_POST":
+      return {
+        ...state,
+        posts: [action.post]
+      }
+    case "REMOVE_POST":
+      return {
+        ...state,
+        posts: state.posts.filter(post => {
+          return post._id != action.id;
+        })
+      }
+    default:
+      return state;
   }
 };
 
 const StoreProvider = ({ value = [], ...props }) => {
-  const [state, dispatch] = useReducer(reducer, {});
+  const [state, dispatch] = useReducer(reducer, {
+    posts: [],
+    favoritePosts: [],
+    post: {
+      _id: 0,
+      title: "",
+      author: "",
+      body: ""
+    }
+  });
 
-  return "PROVIDER ELEMENT HERE";
+  return <Provider value={[state, dispatch]} {...props} />;
 };
 
-const useStoreContext = () => {};
+const useStoreContext = () => {
+  return useContext(StoreContext);
+};
 
 export { StoreProvider, useStoreContext };
