@@ -23,7 +23,8 @@ const PostsList = () => {
         type: "REMOVE_POST",
         _id: id
       });
-    })
+    });
+    console.log(state);
   }
 
   return (

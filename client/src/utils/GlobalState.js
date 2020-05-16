@@ -14,7 +14,7 @@ const reducer = (state, action) => {
     case "VIEW_POST":
       return {
         ...state,
-        posts: [action.post]
+        posts: [...action.post]
       }
     case "REMOVE_POST":
       return {
@@ -22,6 +22,11 @@ const reducer = (state, action) => {
         posts: state.posts.filter(post => {
           return post._id != action.id;
         })
+      }
+    case "CURRENT_POST":
+      return {
+        ...state,
+        post: action.post
       }
     default:
       return state;
@@ -34,9 +39,10 @@ const StoreProvider = ({ value = [], ...props }) => {
     favoritePosts: [],
     post: {
       _id: 0,
-      title: "",
       author: "",
-      body: ""
+      body: "",
+      date: "",
+      title: ""
     }
   });
 

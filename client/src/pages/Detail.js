@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
+import API from "../utils/API";
+import { useStoreContext } from "../utils/GlobalState";
 
 function Detail(props) {
+  const [state, dispatch] = useStoreContext();
+
+  useEffect(() => {
+    getCurrentPost();
+  }, []);
+
+  const getCurrentPost = () => {
+    console.log(props.match.params.id);
+    API.getPost(props.match.params.id).then(result => {
+      console.log(result.data);
+      dispatch({
+        type: "CURRENT_POST",
+        post: result.data
+      })
+    })
+  }
   return (
     <>{/* Replace `true` with the state of your application */}{true ? (
       <Container fluid>
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h1>TITLE by AUTHOR</h1>
+              <h1>{state.post.title} by {state.post.author}</h1>
             </Jumbotron>
           </Col>
         </Row>
@@ -18,7 +36,7 @@ function Detail(props) {
           <Col size="md-10 md-offset-1">
             <article>
               <h1>Content:</h1>
-              <p>BODY</p>
+              <p>{state.post.body}</p>
             </article>
           </Col>
           {/* Replace `false` to check if the current post is in the favorites list */}
