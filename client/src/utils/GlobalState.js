@@ -31,7 +31,7 @@ const reducer = (state, action) => {
     case "ADD_FAVORITES":
       return {
         ...state,
-        favoritePosts: action.post
+        favoritePosts: [action.post, ...state.favoritePosts]
       }
     default:
       return state;

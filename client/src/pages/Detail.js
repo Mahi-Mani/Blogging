@@ -13,9 +13,9 @@ function Detail(props) {
   }, []);
 
   const getCurrentPost = () => {
-    console.log(props.match.params.id);
+    // console.log(props.match.params.id);
     API.getPost(props.match.params.id).then(result => {
-      console.log(result.data);
+      // console.log(result.data);
       dispatch({
         type: "CURRENT_POST",
         post: result.data
@@ -23,7 +23,10 @@ function Detail(props) {
     })
   }
 
-  const addToFavorites = () => {
+  const addToFavorites = (event) => {
+    event.preventDefault();
+    console.log("Inside add to fav");
+
     dispatch({
       type: "ADD_FAVORITES",
       post: state.post
@@ -51,7 +54,7 @@ function Detail(props) {
           {false ? (
             <button className="btn btn-danger">Remove from Favorites!</button>
           ) : (
-              <button className="btn" onClick={() => addToFavorites}> ❤️ Add to Favorites</button>
+              <button className="btn" onClick={addToFavorites}> ❤️ Add to Favorites</button>
             )}
         </Row>
         <Row>
