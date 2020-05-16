@@ -28,6 +28,11 @@ const reducer = (state, action) => {
         ...state,
         post: action.post
       }
+    case "ADD_FAVORITES":
+      return {
+        ...state,
+        favoritePosts: action.post
+      }
     default:
       return state;
   }

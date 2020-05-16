@@ -22,6 +22,14 @@ function Detail(props) {
       })
     })
   }
+
+  const addToFavorites = () => {
+    dispatch({
+      type: "ADD_FAVORITES",
+      post: state.post
+    })
+  }
+
   return (
     <>{/* Replace `true` with the state of your application */}{true ? (
       <Container fluid>
@@ -43,8 +51,8 @@ function Detail(props) {
           {false ? (
             <button className="btn btn-danger">Remove from Favorites!</button>
           ) : (
-            <button className="btn">❤️ Add to Favorites</button>
-          )}
+              <button className="btn" onClick={() => addToFavorites}> ❤️ Add to Favorites</button>
+            )}
         </Row>
         <Row>
           <Col size="md-2">
@@ -53,8 +61,8 @@ function Detail(props) {
         </Row>
       </Container>
     ) : (
-      <div>loading...</div>
-    )}</>
+        <div>loading...</div>
+      )}</>
   );
 }
 
