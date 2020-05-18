@@ -6,6 +6,10 @@ router
   .route("/")
   .post(authController.create);
 
+//   /api/auth/login
+router 
+    .route("/login")
+    .put(authController.find);
 // Matches with "/api/auth/:id"
 // router
 //   .route("/:id")
