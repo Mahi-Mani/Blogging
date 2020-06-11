@@ -13,26 +13,26 @@ const Nav = () => {
     //   }
     // })
   }
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      {loggedEmail ?
-        <div>
-          <h2>
-            Welcome {loggedEmail} !
-      </h2>
-          <button type="submit" className="btn btn-primary float-right" onClick={handleLogout}>Logout</button>
-        </div>
-        :
-        <h2>
+
+  if (loggedEmail) {
+    return (
+      <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">Welcome {loggedEmail} !</a>
+        <form class="form-inline">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" onClick={handleLogout}>Logout</button>
+        </form>
+      </nav>
+    );
+  } else {
+    return (
+      <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+        <a class="navbar-brand"><h2>
           Your personal CMS!
-      </h2>
-      }
-      {/* Display this if the current state is loading */}
-      {/* <a className="navbar-brand ml-auto">
-          Loading...
-        </a> */}
-    </nav>
-  );
+        </h2></a>
+      </nav>
+    );
+  }
+
 };
 
 export default Nav;
