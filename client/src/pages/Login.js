@@ -33,19 +33,31 @@ function Login() {
     }
 
     return (
-        <div>
+        <div
+            style={{
+                backgroundImage: "url(" + "https://images.pexels.com/photos/34153/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" + ")",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+            }}
+            className="jumbotron row">
+                <div className="col-md-2"></div>
+                <div className="col-md-8">
             <div className="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+            <h1 class="display-4 text-light">LOGIN</h1>
+                <label for="exampleInputEmail1"className="text-light">Email address</label>
                 <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     placeholder="Enter email" ref={emailRef}></input>
                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div className="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label for="exampleInputPassword1" className="text-light">Password</label>
                 <input type="password" className="form-control" id="exampleInputPassword1"
                     placeholder="Password" ref={passwordRef}></input>
             </div>
             <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+        </div>
+        <div className="col-md-2"></div>
         </div>
     )
 }

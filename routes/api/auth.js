@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const authController = require("../../controllers/authController");
+const passport = require("../../config/passport");
 
 // Matches with "/api/auth"
 router
@@ -9,7 +10,13 @@ router
 //   /api/auth/login
 router 
     .route("/login")
-    .put(authController.find);
+    .put(passport.authenticate("local"), function(req, res) {
+      console.log("Request", req);
+      console.log("Response", res);
+      console.log("Login successful");
+      res.send("test");
+    });
+    
 // Matches with "/api/auth/:id"
 // router
 //   .route("/:id")
